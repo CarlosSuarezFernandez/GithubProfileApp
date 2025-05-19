@@ -3,6 +3,8 @@ package com.example.githubprofileapp.presentation
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.githubprofileapp.data.model.GithubRepositoryModel
+import com.example.githubprofileapp.data.repository.NetworkException
+import com.example.githubprofileapp.data.repository.UserNotFoundException
 import com.example.githubprofileapp.domain.usecase.GetUserRepositoriesUsecase
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -46,8 +48,12 @@ class HomeViewModel(
                     _repositories.value = repos
                     _uiState.value = UiState.Success(repos)
                 }
+            } catch (e: UserNotFoundException) {
+                _uiState.value = UiState.UserNotFound(username)
+            } catch (e: NetworkException) {
+                _uiState.value = UiState.NetworkError(e.message ?: "Error de red")
             } catch (e: Exception) {
-                _uiState.value = UiState.NetworkError(e.message ?: "Error desconocido")
+                _uiState.value = UiState.NetworkError("Error desconocido")
             }
         }
     }
