@@ -21,7 +21,7 @@ A simple Android application that allows users to search for GitHub profiles and
 *   **Kotlin Coroutines & Flow**: For asynchronous programming.
 *   **Koin**: For dependency injection.
 *   **Coil**: For image loading (avatars).
-*   **Ktor: Used for GitHub API calls.
+*   **Ktor**: Used for GitHub API calls.
 *   **Material 3**: For UI design components.
 *   **Android Navigation Component**: To manage navigation between screens.
 
